@@ -1,7 +1,7 @@
 provider "aws" {
   region = "ap-south-1"
-  access_key = "my-access-key"
-  secret_key = "my-secret-key"
+  access_key = "AKIAWYYXEWHS37OKFYU2"
+  secret_key = "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"
 }
 
 resource "aws_instance" "FinanceMeDeploy" {
