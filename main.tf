@@ -29,10 +29,15 @@ resource "aws_security_group" "mysg" {
   }
 }
 
+resource "aws_key_pair" "mykeypair" {
+  key_name   = "my-key-pair"
+  public_key = file("my-key-pair.pub")
+}
+
 resource "aws_instance" "FinanceMeDeploy" {
   ami           = "ami-02eb7a4783e7e9317"
   instance_type = "t2.micro"
-  key_name      = "mykey"
+  key_name      = aws_key_pair.mykeypair.key_name
   vpc_security_group_ids = [aws_security_group.mysg.id]
   tags = {
     Name = "FinanceMEDeploy"
