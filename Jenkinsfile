@@ -27,7 +27,7 @@ pipeline {
         }
 	stage('Build Docker Image') {
 		steps {
-			sh 'docker build -t financeme .'	
+			sh 'docker build -t minimalkushal/financeme .'	
 		}
 	}
     }
