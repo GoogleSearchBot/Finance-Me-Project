@@ -50,7 +50,7 @@ connection {
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
   
-  provisioner "local-exec" {
+  provisioner "remote-exec" {
     command = "ansible-playbook -i '${self.public_ip}' Ubuntu-config.yml"
   }
 }
