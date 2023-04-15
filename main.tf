@@ -29,14 +29,28 @@ resource "aws_security_group" "mysg" {
   }
 }
 
+resource "aws_key_pair" "mykey" {
+  key_name   = "my-key"
+  public_key = file("mykey.pub")
+}
+
+
 resource "aws_instance" "FinanceMeDeploy" {
   ami           = "ami-02eb7a4783e7e9317"
   instance_type = "t2.micro"
+  key_name      = aws_key_pair.mykey.key_name
   vpc_security_group_ids = [aws_security_group.mysg.id]
   tags = {
     Name = "FinanceMEDeploy"
   }
 }
+
+connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file("mykey.pem")
+    host        = aws_instance.FinanceMeDeploy.public_ip
+  }
 
 resource "null_resource" "ansible_provisioner" {
   depends_on = [aws_instance.FinanceMeDeploy]
@@ -44,8 +58,3 @@ resource "null_resource" "ansible_provisioner" {
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip},' Ubuntu-config.yml"
   }
 }
-
-
-
-
-
