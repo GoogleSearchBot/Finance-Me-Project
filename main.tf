@@ -92,7 +92,4 @@ ScBcvvzS/SQujLNcd8maB6vYceLzCwsWccAe3hhXP9ZTwzvrqBV2DURZF2I5UzqTkIYCIf
   provisioner "local-exec" {
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip},' Ubuntu-config.yml"
   }
-  output "public_ip" {
-  value = aws_instance.example.public_ip
-  }
 }
