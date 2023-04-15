@@ -44,11 +44,10 @@ connection {
     private_key =  file("./mykey.pem")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
-
-resource "null_resource" "ansible_provisioner" {
-  depends_on = [aws_instance.FinanceMeDeploy]
+  
+  
   provisioner "local-exec" {
+    depends_on = [aws_instance.FinanceMeDeploy]
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip},' Ubuntu-config.yml"
   }
-}
 }
