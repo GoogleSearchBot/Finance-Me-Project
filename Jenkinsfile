@@ -43,7 +43,7 @@ pipeline {
 			sh 'terraform init'
 			sh 'export AWS_ACCESS_KEY_ID=AKIAWYYXEWHS37OKFYU2'
 			sh 'export AWS_SECRET_ACCESS_KEY=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'
-			sh 'terraform plan'
+			sh 'terraform validate'
 		}
 	}
     }
