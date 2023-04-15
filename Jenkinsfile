@@ -10,10 +10,5 @@ pipeline {
                 sh 'terraform version'
             }
         }
-        stage('Cloning Repo') {
-            steps {
-                git branch: 'main', url: 'https://github.com/MinimalKushal/Finance-Me-Project.git'
-            }
-        }
     }
 }
