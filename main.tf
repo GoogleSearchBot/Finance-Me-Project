@@ -31,7 +31,7 @@ resource "aws_security_group" "mysg" {
 
 resource "aws_key_pair" "mykeypair" {
   key_name   = "my-key-pair"
-  public_key = file("my-key-pair.pub")
+  public_key = file("~/.ssh/id_rsa.pub")
 }
 
 resource "aws_instance" "FinanceMeDeploy" {
@@ -46,12 +46,14 @@ resource "aws_instance" "FinanceMeDeploy" {
 connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key =  file("./mykey.pem")
+    private_key =  file("~/.ssh/id_rsa")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
-  
-  
+ 
   provisioner "local-exec" {
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip},' Ubuntu-config.yml"
+  }
+  output "public_ip" {
+  value = aws_instance.example.public_ip
   }
 }
