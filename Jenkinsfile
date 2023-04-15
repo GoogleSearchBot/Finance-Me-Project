@@ -30,5 +30,13 @@ pipeline {
 			sh 'docker build -t minimalkushal/financeme .'	
 		}
 	}
+	stage('Push image to Docker Hub') {
+	     steps {
+		withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerhubpass', usernameVariable: 'dockerhubuser')]) {
+			sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
+			sh 'docker push minimalkushal/financeme'
+		}
+	     }
+	}
     }
 }
