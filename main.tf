@@ -46,7 +46,8 @@ resource "aws_instance" "FinanceMeDeploy" {
 connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key =  "-----BEGIN OPENSSH PRIVATE KEY-----
+    private_key =  <<-EOF
+  -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEArquSce0Hqmt5lxihTuQY8k/NF1UPn6Qt4W/vRXcu1/0qYzkxNl6l
 V2wL3gm+pOFatqHXgazzDf3dtGTVqdsVHsM/m95dg2NR029QKwN+oUe3Gnc++rItSNn9/V
@@ -84,7 +85,7 @@ f58Ju+7UKfvqGFZTylpCVWCgSpjdyhUSATYz+9M4TEpuqK6/rTeKevWJ6LXKSAI8/OBbcs
 ScBcvvzS/SQujLNcd8maB6vYceLzCwsWccAe3hhXP9ZTwzvrqBV2DURZF2I5UzqTkIYCIf
 +R5gF5HkDlZwcHAAAADGt1c2hhQEt1c2hhbAECAwQFBg==
 -----END OPENSSH PRIVATE KEY-----
-"
+ EOF
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
  
