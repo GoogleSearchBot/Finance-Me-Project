@@ -29,16 +29,10 @@ resource "aws_security_group" "mysg" {
   }
 }
 
-resource "aws_key_pair" "mykey" {
-  key_name   = "my-key"
-  public_key = file("mykey.pub")
-}
-
-
 resource "aws_instance" "FinanceMeDeploy" {
   ami           = "ami-02eb7a4783e7e9317"
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.mykey.key_name
+  key_name      = "mykey"
   vpc_security_group_ids = [aws_security_group.mysg.id]
   tags = {
     Name = "FinanceMEDeploy"
@@ -47,7 +41,7 @@ resource "aws_instance" "FinanceMeDeploy" {
 connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("mykey.pem")
+    private_key =  file("./mykey.pem")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
 
