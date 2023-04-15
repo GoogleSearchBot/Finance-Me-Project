@@ -51,6 +51,6 @@ connection {
   }
   
   provisioner "remote-exec" {
-    command = "ansible-playbook -i '${self.public_ip}' Ubuntu-config.yml"
+        inline = [ "ansible-playbook -i '${self.public_ip}' Ubuntu-config.yml" ]
   }
 }
