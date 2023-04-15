@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+  user: ubuntu
   connection: ssh
   tasks:
   - name: Apt update
