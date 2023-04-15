@@ -49,10 +49,6 @@ connection {
     private_key = file("mykey")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
- 
-   provisioner "local-exec" {
-        command = " echo ${aws_instance.FinanceMeDeploy.public_ip} > inventory.txt"
-  }
   
   provisioner "local-exec" {
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip}', Ubuntu-config.yml"
