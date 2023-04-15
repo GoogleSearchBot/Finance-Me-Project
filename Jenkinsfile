@@ -25,9 +25,10 @@ pipeline {
 		    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
-	stage('Build Docker Image')
-	{
-		sh 'docker build -t FinanceMe .'	
+	stage('Build Docker Image') {
+		steps {
+			sh 'docker build -t FinanceMe .'	
+		}
 	}
     }
 }
