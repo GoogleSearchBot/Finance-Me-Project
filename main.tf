@@ -43,11 +43,10 @@ resource "aws_instance" "FinanceMeDeploy" {
   tags = {
     Name = "FinanceMEDeploy"
   }
-}
 
 connection {
     type        = "ssh"
-    user        = "ec2-user"
+    user        = "ubuntu"
     private_key = file("mykey.pem")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
@@ -57,4 +56,5 @@ resource "null_resource" "ansible_provisioner" {
   provisioner "local-exec" {
     command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip},' Ubuntu-config.yml"
   }
+}
 }
