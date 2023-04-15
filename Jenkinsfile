@@ -38,5 +38,11 @@ pipeline {
 		}
 	     }
 	}
+	stage('Execute the Terraform File') {
+		steps {
+			sh 'terraform init'
+			sh 'terraform plan'
+		}
+	}
     }
 }
