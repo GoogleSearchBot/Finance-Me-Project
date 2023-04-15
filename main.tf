@@ -46,7 +46,7 @@ resource "aws_instance" "FinanceMeDeploy" {
 connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("mykey")
+    private_key = file("/mykey")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
  
