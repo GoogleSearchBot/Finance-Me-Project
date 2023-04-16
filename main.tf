@@ -51,6 +51,6 @@ resource "aws_instance" "FinanceMeDeploy" {
   }
   
   provisioner "local-exec" {
-        command = "ansible-playbook -u ubuntu --key-file mykey -T 300 -i '${aws_instance.FinanceMeDeploy.public_ip},', Ubuntu_config.yml"  
+        command = "ansible-playbook -u ubuntu --key-file mykey -T 300 -i '${aws_instance.FinanceMeDeploy.public_ip},', Ubuntu-config.yml"  
   }
 }
