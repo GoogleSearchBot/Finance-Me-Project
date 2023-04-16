@@ -50,7 +50,11 @@ resource "aws_instance" "FinanceMeDeploy" {
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
   
+  provisioner "local-exec" {
+        command = " echo ${aws_instance.FinanceMeDeploy.public_ip} > inventory.txt "
+  }
+  
   provisioner "local-exec" { 
-        command = "ansible-playbook -i localhost, --connection=local Ubuntu-config.yml"
+        command = "ansible-playbook Ubuntu-config.yml"
   }
 }
