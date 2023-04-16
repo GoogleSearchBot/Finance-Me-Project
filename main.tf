@@ -58,5 +58,5 @@ resource "aws_instance" "FinanceMeDeploy" {
     inline = [
       "ansible-playbook /home/ubuntu/FinanceMe/Ubuntu-config.yml"
     ]
- 
+  }
 }
