@@ -50,7 +50,7 @@ resource "aws_instance" "FinanceMeDeploy" {
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
   
-  provisioner "local-exec" {
-        command = "ansible-playbook -u ubuntu --key-file mykey -T 300 -i '${aws_instance.FinanceMeDeploy.public_ip},', Ubuntu-config.yml"  
+  provisioner "local-exec" { 
+        command = "ansible-playbook -i localhost, --connection=local Ubuntu-config.yml"
   }
 }
