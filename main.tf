@@ -43,16 +43,14 @@ resource "aws_instance" "FinanceMeDeploy" {
     Name = "FinanceMEDeploy"
   }
 
-  
-  provisioner "local-exec" {
-        command = "ansible-playbook -i inventory.txt Ubuntu-config.yml" 
-  }
-  
-connection {
+  connection {
     type        = "ssh"
     user        = "ubuntu"
     private_key = file("mykey")
     host        = aws_instance.FinanceMeDeploy.public_ip
   }
   
+  provisioner "local-exec" {
+        command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip}', Ubuntu-config.yml" 
+  }
 }
