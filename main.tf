@@ -55,6 +55,6 @@ resource "aws_instance" "FinanceMeDeploy" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook /home/ubuntu/FinanceMe/Ubuntu-config.yml"
+    command = "ansible-playbook Ubuntu-config.yml"
   }
 }
