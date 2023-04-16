@@ -54,9 +54,8 @@ resource "aws_instance" "FinanceMeDeploy" {
         command = " echo ${aws_instance.FinanceMeDeploy.public_ip} > inventory.txt "
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "ansible-playbook /home/ubuntu/FinanceMe/Ubuntu-config.yml"
-    ]
-  }
+   provisioner "local-exec" {
+		command = "ansible-playbook -i inventory.txt Ubuntu-config.yml"
+ }
+
 }
