@@ -18,7 +18,7 @@ pipeline {
         //paste here
 	stage('Execute the Terraform File') {
 		steps {
-			sh 'sudo chmod 600 mykey.pem'
+			sh 'sudo chmod 600 Kushal.pem'
 			sh 'terraform init'
 			sh 'terraform validate'
 			sh 'terraform plan'
