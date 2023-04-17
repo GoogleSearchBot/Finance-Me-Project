@@ -1,12 +1,13 @@
 ---
 - hosts: all
   become: true
-  user: ubuntu
   connection: ssh
   tasks:
   - name: Apt update
     command: sudo apt update
   - name: Install Docker
     command: sudo apt install docker.io -y
+  - name: Docker Start
+    command: sudo service docker start
   - name: Deploy Finance Me Docker Image
     command: docker run -itd -p 8081:8081 --name finance-me minimalkushal/financeme
