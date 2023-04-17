@@ -31,7 +31,7 @@ resource "aws_security_group" "mysg" {
 
 resource "aws_key_pair" "mykeypair" {
   key_name   = "my-key-pair"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuq5Jx7Qeqa3mXGKFO5BjyT80XVQ+fpC3hb+9Fdy7X/SpjOTE2XqVXbAveCb6k4Vq2odeBrPMN/d20ZNWp2xUewz+b3l2DY1HTb1ArA36hR7cadz76si1I2f39XBL514mA0RvOBZRkzLj8LwxobwpwUkEq+XLvbI0oMQ7nzPDwHFGtYzpW72U0r6fyP9wCmdZEZ3ooej3WmDlA7tiQKiPVCWtJqCrX90yC2U3Bm5lesgtY9v7ubOZL6sktGbEBdTF6KYS0KH4vF8lrN+2F1zGp0F2XoJEBD9WSri+OZOo9a4Vax7RqfXCCVZNG0QLxMH9mjDC9r/wzqLZ51FRNIKscxoCKV+FiFsTkQGIpxcWfEs+l68wCtiHF8h6DKxv/T5P00H8lURQhwel4ntVBy2IXnAGVa9QonI8Q56lJlVRoblZVwOrXUsyznVFge9u7H47zI+ZZnMJH05nCiJiRr2PLsIDukPZ8Kdn44m/BWuIutdvR8NvTD/JJMeynRupbxus= kusha@Kushal"
+  public_key = file("mykey.pub")
 }
 
 resource "aws_instance" "FinanceMeDeploy" {
@@ -48,7 +48,7 @@ resource "aws_instance" "FinanceMeDeploy" {
    connection {
      type        = "ssh"
      user        = "ubuntu"
-     private_key = file("mykey")
+     private_key = file("mykey.pem")
      host        = aws_instance.FinanceMeDeploy.public_ip
    }
   }
