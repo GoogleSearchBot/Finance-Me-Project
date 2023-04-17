@@ -42,14 +42,16 @@ resource "aws_instance" "FinanceMeDeploy" {
   tags = {
     Name = "FinanceMEDeploy"
   }
-
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("mykey")
-    host        = aws_instance.FinanceMeDeploy.public_ip
+  provisioner "remote-exec" {
+  inline = [ "echo wait till ssh connection is ready"]
+	  
+   connection {
+     type        = "ssh"
+     user        = "ubuntu"
+     private_key = file("mykey")
+     host        = aws_instance.FinanceMeDeploy.public_ip
+   }
   }
-  
   provisioner "local-exec" {
         command = " echo ${aws_instance.FinanceMeDeploy.public_ip} > inventory.txt "
   }
