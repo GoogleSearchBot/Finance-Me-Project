@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  remote_user: ubuntu
+  user: ubuntu
   connection: ssh
   tasks:
   - name: Apt update
@@ -10,23 +10,3 @@
     command: sudo apt install docker.io -y
   - name: Deploy Finance Me Docker Image
     command: docker run -itd -p 8081:8081 --name finance-me minimalkushal/financeme
-  - name: Install Prometheus
-    command: sudo apt install prometheus -y
-  - name: Install Https for Grafana
-    command: sudo apt install -y apt-transport-https
-  - name: Install Wget and software-properties
-    command: sudo apt install -y software-properties-common wget
-  - name: Adding Grafana Keys
-    command: sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
-  - name: Adding Grafana Download source
-    command: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-  - name: apt update
-    command: sudo apt update
-  - name: Install Grafana
-    command: sudo apt install grafana -y
-  - name: Reload all services
-    command: sudo systemctl daemon-reload
-  - name: Start Grafana Server
-    command: sudo systemctl start grafana-server
-  - name: Enable Grafana Service
-    command: sudo systemctl enable grafana-server.service
