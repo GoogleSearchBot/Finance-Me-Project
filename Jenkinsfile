@@ -10,6 +10,11 @@ pipeline {
                 sh 'terraform version'
             }
         }
+	    stage('Repo Cloning') {
+            steps {
+               git branch: 'main', url: 'https://github.com/MinimalKushal/Finance-Me-Project.git'
+            }
+        }
         //paste here
 	stage('Execute the Terraform File') {
 		steps {
