@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  user: ubuntu
+  remote_user: ubuntu
   connection: ssh
   tasks:
   - name: Apt update
