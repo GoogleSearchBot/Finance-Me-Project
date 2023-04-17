@@ -49,7 +49,8 @@ resource "aws_instance" "FinanceMeDeploy" {
      type        = "ssh"
      user        = "ubuntu"
      private_key = file("mykey.pem")
-     host        = aws_instance.FinanceMeDeploy.public_ip
+     # host        = aws_instance.FinanceMeDeploy.public_ip
+     host        = self.public_ip
    }
   }
   provisioner "local-exec" {
@@ -57,7 +58,8 @@ resource "aws_instance" "FinanceMeDeploy" {
   }
 
    provisioner "local-exec" {
-	      command = "ansible-playbook -i ${aws_instance.FinanceMeDeploy.public_ip}, Ubuntu-config.yml"
+	     # command = "ansible-playbook -i ${aws_instance.FinanceMeDeploy.public_ip}, Ubuntu-config.yml"
+	   command = "ansible-playbook /var/lib/jenkins/workspace/Finance\ Me/Ubuntu-config.yml"
  }
 }
 output "finance-me-ip" {
