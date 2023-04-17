@@ -55,7 +55,9 @@ resource "aws_instance" "FinanceMeDeploy" {
   }
 
    provisioner "local-exec" {
-		command = "ansible-playbook -i inventory.txt Ubuntu-config.yml"
+	      command = "ansible-playbook -i '${aws_instance.FinanceMeDeploy.public_ip}', --private_key mykey Ubuntu-config.yml"
  }
-
+}
+output "finance-me-ip" {
+	value = aws_instance.FinanceMeDeploy.public_ip
 }
