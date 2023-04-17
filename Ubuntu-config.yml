@@ -1,5 +1,5 @@
 ---
-- hosts: /home/ubuntu/test/Finance-Me-Project/inventory.txt
+- hosts: localhost
   become: true
   remote_user: ubuntu
   connection: ssh
