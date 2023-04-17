@@ -9,7 +9,7 @@
   - name: Install Docker
     command: sudo apt install docker.io -y
   - name: Deploy Finance Me Docker Image
-    command: docker run --itd -p 8081:8081 --name finance-me minimalkushal/financeme
+    command: docker run -itd -p 8081:8081 --name finance-me minimalkushal/financeme
   - name: Install Prometheus
     command: sudo apt install prometheus -y
   - name: Install Https for Grafana
