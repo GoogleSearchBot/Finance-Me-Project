@@ -10,4 +10,4 @@
   - name: Docker Start
     command: sudo systemctl start docker
   - name: Deploy Finance Me Docker Image
-    command: docker run -itd -p 8081:8081 --name finance-me minimalkushal/financeme
+    command: sudo docker run -itd -p 8081:8081 --name finance-me minimalkushal/financeme
