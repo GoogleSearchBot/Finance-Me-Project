@@ -1,7 +1,7 @@
 provider "aws" {
   region = "ap-south-1"
-  access_key = "AKIAWYYXEWHSXZS5XDRL"
-  secret_key = "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"
+  access_key = "AKIAWYYXEWHS6BU6OHXN"
+  secret_key = "toqjAYDoGE/9rG0hPmkh6C3eO/4kuI387wfmFd/S"
 }
 
 
@@ -25,19 +25,13 @@ resource "aws_security_group" "mysg" {
   }
   
   tags = {
-    Name = "example-security-group"
+    Name = "FinanceMe-SG"
   }
 }
-
-# resource "aws_key_pair" "mykeypair" {
- # key_name   = "my-key-pair"
-  #public_key = file("mykey.pub")
-#}
 
 resource "aws_instance" "FinanceMeDeploy" {
   ami           = "ami-02eb7a4783e7e9317"
   instance_type = "t2.micro"
-  #key_name      = aws_key_pair.mykeypair.key_name
   key_name = "Kushal"
   vpc_security_group_ids = [aws_security_group.mysg.id]
   tags = {
@@ -50,7 +44,6 @@ resource "aws_instance" "FinanceMeDeploy" {
      type        = "ssh"
      user        = "ubuntu"
      private_key = file("Kushal.pem")
-     # host        = aws_instance.FinanceMeDeploy.public_ip
      host        = self.public_ip
    }
   }
@@ -59,8 +52,7 @@ resource "aws_instance" "FinanceMeDeploy" {
   }
 
    provisioner "local-exec" {
-	     # command = "ansible-playbook -i ${aws_instance.FinanceMeDeploy.public_ip}, Ubuntu-config.yml"
-	   command = " ansible-playbook /var/lib/jenkins/workspace/FinanceMe/Ubuntu-config.yml "
+	   command = " ansible-playbook /var/lib/jenkins/workspace/FinanceMe/Finance-Playbook.yml "
  }
 }
 output "finance-me-ip" {
