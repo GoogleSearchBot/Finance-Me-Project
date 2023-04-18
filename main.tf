@@ -8,7 +8,7 @@ provider "aws" {
 resource "aws_security_group" "mysg" {
   name_prefix = "finance-me-sg"
   vpc_id      = "vpc-037232b62dfa10afc"
-  description = "Example security group"
+  description = "Finance Me Project Security Group"
   
   ingress {
     from_port   = 0
@@ -30,7 +30,7 @@ resource "aws_security_group" "mysg" {
 }
 
 resource "aws_instance" "FinanceMeDeploy" {
-  ami           = "ami-02eb7a4783e7e9317"
+  ami           = "ami-07d3a50bd29811cd1"
   instance_type = "t2.micro"
   key_name = "Kushal"
   vpc_security_group_ids = [aws_security_group.mysg.id]
