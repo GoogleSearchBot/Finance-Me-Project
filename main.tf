@@ -42,7 +42,7 @@ resource "aws_instance" "FinanceMeDeploy" {
 	  
    connection {
      type        = "ssh"
-     user        = "ubuntu"
+     user        = "ec2-user"
      private_key = file("Kushal.pem")
      host        = self.public_ip
    }
